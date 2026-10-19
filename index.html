@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KompuTek — Toko Komputer & Service</title>
+<meta name="description" content="KompuTek: toko komputer, laptop, komponen, dan service hardware/software. Garansi jelas, harga jujur, teknisi berpengalaman.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0e0e10; --bg2:#16161a; --panel:#1c1c22; --line:#2a2a32; --line2:#3a3a44;
+  --fg:#f2f1ec; --muted:#8a8a94; --muted2:#5a5a64;
+  --copper:#d97a3a; --copper2:#f09a5a; --amber:#f2c14e; --rust:#a04a2a;
+  --green:#6fbf73; --red:#d9534f;
+  --radius:0px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--fg);font-family:'Space Grotesk',system-ui,sans-serif;font-size:16px;line-height:1.5;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img,video{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--copper);color:#000}
+.mono{font-family:'JetBrains Mono',monospace;letter-spacing:-.02em}
+.display{font-family:'Archivo Black',sans-serif;text-transform:uppercase;letter-spacing:-.02em;line-height:.92}
+.container{max-width:1280px;margin:0 auto;padding:0 28px}
+@media(max-width:720px){.container{padding:0 18px}}
+
+/* ---- top bar ---- */
+.topbar{position:fixed;top:0;left:0;right:0;z-index:50;height:64px;display:flex;align-items:center;border-bottom:1px solid var(--line);background:rgba(14,14,16,.75);backdrop-filter:blur(10px)}
+.topbar .container{display:flex;align-items:center;justify-content:space-between;width:100%}
+.brand{display:flex;align-items:center;gap:12px;font-family:'Archivo Black';font-size:18px;letter-spacing:.02em}
+.brand .mark{width:34px;height:34px;background:var(--copper);display:grid;place-items:center;color:#000;font-family:'JetBrains Mono';font-weight:700;font-size:14px;position:relative}
+.brand .mark::after{content:'';position:absolute;inset:-4px;border:1px solid var(--copper);opacity:.4}
+.nav{display:flex;gap:28px;font-size:13px;text-transform:uppercase;letter-spacing:.12em;font-weight:500}
+.nav a{position:relative;padding:6px 0;opacity:.7;transition:opacity .2s}
+.nav a:hover{opacity:1}
+.nav a::after{content:'';position:absolute;left:0;bottom:0;width:0;height:2px;background:var(--copper);transition:width .25s}
+.nav a:hover::after{width:100%}
+.nav-cta{padding:10px 18px;background:var(--copper);color:#000;font-weight:700;font-size:12px;letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--copper);transition:all .2s}
+.nav-cta:hover{background:transparent;color:var(--copper)}
+@media(max-width:900px){.nav{display:none}}
+
+/* ---- hero ---- */
+.hero{position:relative;min-height:100vh;overflow:hidden;background:#000;display:flex;align-items:flex-end;padding:120px 0 60px}
+.hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:contrast(1.05) saturate(.85) brightness(.55)}
+.hero .scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,14,16,.35) 0%,rgba(14,14,16,.1) 30%,rgba(14,14,16,.85) 75%,var(--bg) 100%);pointer-events:none}
+.hero .grid{position:absolute;inset:0;background-image:linear-gradient(rgba(217,122,58,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(217,122,58,.06) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse at center,black 30%,transparent 75%);pointer-events:none}
+.hero .meta{position:absolute;top:110px;left:28px;right:28px;display:flex;justify-content:space-between;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-family:'JetBrains Mono'}
+.hero .meta .dot{display:inline-block;width:8px;height:8px;background:var(--green);border-radius:50%;margin-right:8px;box-shadow:0 0 8px var(--green);animation:blink 1.6s infinite}
+@keyframes blink{50%{opacity:.3}}
+.hero-content{position:relative;width:100%;z-index:2}
+.hero h1{font-size:clamp(52px,11vw,150px);margin-bottom:24px}
+.hero h1 .line2{color:var(--copper);display:block}
+.hero .sub{max-width:560px;font-size:17px;color:var(--muted);margin-bottom:40px}
+.hero .actions{display:flex;gap:14px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:16px 26px;font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--fg);background:var(--fg);color:var(--bg);transition:all .2s;cursor:pointer;font-family:inherit}
+.btn:hover{background:transparent;color:var(--fg)}
+.btn.ghost{background:transparent;color:var(--fg);border-color:var(--line2)}
+.btn.ghost:hover{border-color:var(--copper);color:var(--copper)}
+.btn .arrow{transition:transform .2s}
+.btn:hover .arrow{transform:translateX(4px)}
+.hero-foot{display:flex;gap:40px;margin-top:60px;padding-top:24px;border-top:1px solid var(--line);flex-wrap:wrap}
+.hero-foot .stat .n{font-family:'Archivo Black';font-size:34px;color:var(--copper)}
+.hero-foot .stat .l{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-top:2px}
+
+/* ---- marquee ---- */
+.marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;padding:18px 0;background:var(--bg2)}
+.marquee-track{display:flex;gap:60px;white-space:nowrap;animation:marq 28s linear infinite;font-family:'Archivo Black';font-size:22px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+.marquee-track span{display:flex;align-items:center;gap:60px}
+.marquee-track .dot{width:10px;height:10px;background:var(--copper);display:inline-block}
+@keyframes marq{to{transform:translateX(-50%)}}
+
+/* ---- section base ---- */
+section{padding:110px 0;position:relative}
+section .eyebrow{display:flex;align-items:center;gap:14px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--copper);font-family:'JetBrains Mono';margin-bottom:24px}
+section .eyebrow::before{content:'';width:40px;height:1px;background:var(--copper)}
+h2.section-title{font-size:clamp(36px,6vw,72px);margin-bottom:20px}
+h2.section-title .accent{color:var(--copper)}
+.section-lead{max-width:620px;color:var(--muted);font-size:17px;margin-bottom:60px}
+
+/* ---- services ---- */
+.services{background:var(--bg)}
+.srv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.srv{padding:40px 32px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);position:relative;transition:background .25s;min-height:260px;display:flex;flex-direction:column}
+.srv:hover{background:var(--panel)}
+.srv .num{font-family:'JetBrains Mono';font-size:12px;color:var(--copper);margin-bottom:24px}
+.srv h3{font-size:22px;margin-bottom:12px;font-weight:700}
+.srv p{color:var(--muted);font-size:14px;flex:1}
+.srv .tags{margin-top:20px;display:flex;flex-wrap:wrap;gap:6px}
+.srv .tags span{font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:4px 8px;border:1px solid var(--line2);color:var(--muted)}
+.srv .arrow{position:absolute;bottom:32px;right:32px;font-size:20px;color:var(--muted2);transition:all .2s}
+.srv:hover .arrow{color:var(--copper);transform:translate(4px,-4px)}
+@media(max-width:900px){.srv-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.srv-grid{grid-template-columns:1fr}}
+
+/* ---- showcase strip ---- */
+.showcase{background:var(--bg2);padding:0}
+.showcase .head{padding:110px 0 40px}
+.show-grid{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:320px 320px;gap:4px}
+.show-grid .tile{position:relative;overflow:hidden;background:#000}
+.show-grid .tile img{width:100%;height:100%;object-fit:cover;transition:transform .6s;filter:saturate(.9) contrast(1.05)}
+.show-grid .tile:hover img{transform:scale(1.06)}
+.show-grid .tile .cap{position:absolute;left:16px;bottom:16px;font-family:'JetBrains Mono';font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#fff;background:rgba(14,14,16,.7);padding:6px 10px;border-left:2px solid var(--copper)}
+.show-grid .tile.tall{grid-row:span 2}
+@media(max-width:900px){.show-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto}.show-grid .tile{height:240px}.show-grid .tile.tall{grid-row:span 1}}
+
+/* ---- process ---- */
+.process{background:var(--bg)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative}
+.step{padding:32px 24px;border-left:1px solid var(--line);position:relative}
+.step:first-child{border-left:none}
+.step .n{font-family:'Archivo Black';font-size:64px;color:var(--line2);line-height:1;margin-bottom:16px;transition:color .2s}
+.step:hover .n{color:var(--copper)}
+.step h4{font-size:18px;margin-bottom:8px}
+.step p{color:var(--muted);font-size:14px}
+.step .rule{height:2px;background:var(--line);margin:20px 0;position:relative}
+.step .rule::after{content:'';position:absolute;left:0;top:0;height:100%;width:0;background:var(--copper);transition:width .4s}
+.step:hover .rule::after{width:100%}
+@media(max-width:900px){.steps{grid-template-columns:1fr 1fr}.step:nth-child(2){border-left:none}}
+
+/* ---- pricing-ish / packages ---- */
+.packages{background:var(--bg2)}
+.pkg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.pkg{border:1px solid var(--line);padding:36px 30px;background:var(--bg);position:relative;transition:transform .2s,border-color .2s}
+.pkg:hover{transform:translateY(-6px);border-color:var(--copper)}
+.pkg.featured{background:var(--panel);border-color:var(--copper)}
+.pkg .badge{position:absolute;top:-1px;right:24px;background:var(--copper);color:#000;font-size:10px;letter-spacing:.16em;text-transform:uppercase;padding:6px 12px;font-weight:700}
+.pkg h3{font-size:24px;margin-bottom:6px}
+.pkg .price{font-family:'Archivo Black';font-size:44px;color:var(--copper);margin:18px 0 4px}
+.pkg .price small{font-size:14px;color:var(--muted);font-family:'Space Grotesk';font-weight:400}
+.pkg ul{list-style:none;margin:24px 0 30px}
+.pkg ul li{padding:10px 0;border-bottom:1px solid var(--line);font-size:14px;color:var(--muted);display:flex;align-items:center;gap:10px}
+.pkg ul li::before{content:'—';color:var(--copper);font-family:'JetBrains Mono'}
+.pkg .btn{width:100%;justify-content:center}
+@media(max-width:900px){.pkg-grid{grid-template-columns:1fr}}
+
+/* ---- testimonials ---- */
+.testi{background:var(--bg)}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.testi-card{border:1px solid var(--line);padding:32px;background:var(--panel);position:relative}
+.testi-card .quote{font-size:18px;line-height:1.4;margin-bottom:24px}
+.testi-card .quote::before{content:'“';font-family:'Archivo Black';font-size:48px;color:var(--copper);line-height:.6;display:block;margin-bottom:8px}
+.testi-card .who{display:flex;align-items:center;gap:12px;padding-top:16px;border-top:1px solid var(--line)}
+.testi-card .avatar{width:40px;height:40px;background:var(--copper);color:#000;display:grid;place-items:center;font-weight:700;font-family:'Archivo Black'}
+.testi-card .name{font-weight:700;font-size:14px}
+.testi-card .role{font-size:12px;color:var(--muted)}
+@media(max-width:900px){.testi-grid{grid-template-columns:1fr}}
+
+/* ---- contact ---- */
+.contact{background:var(--bg2)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px}
+.contact .info{display:flex;flex-direction:column;gap:28px}
+.contact .info-block{border-left:2px solid var(--copper);padding-left:18px}
+.contact .info-block .label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.contact .info-block .val{font-size:18px;font-weight:600}
+.contact form{display:flex;flex-direction:column;gap:16px}
+.contact input,.contact textarea,.contact select{background:var(--bg);border:1px solid var(--line2);color:var(--fg);padding:14px 16px;font-family:inherit;font-size:15px;outline:none;transition:border-color .2s;border-radius:0}
+.contact input:focus,.contact textarea:focus,.contact select:focus{border-color:var(--copper)}
+.contact textarea{min-height:120px;resize:vertical}
+.contact .row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:720px){.contact-grid{grid-template-columns:1fr}.contact .row{grid-template-columns:1fr}}
+
+/* ---- footer ---- */
+footer{background:#000;padding:60px 0 30px;border-top:1px solid var(--line)}
+footer .top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+footer h4{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--copper);margin-bottom:16px}
+footer ul{list-style:none}
+footer ul li{margin-bottom:8px;font-size:14px;color:var(--muted)}
+footer ul li a:hover{color:var(--fg)}
+footer .bottom{border-top:1px solid var(--line);padding-top:24px;display:flex;justify-content:space-between;font-size:12px;color:var(--muted);flex-wrap:wrap;gap:12px}
+@media(max-width:900px){footer .top{grid-template-columns:1fr 1fr}}
+
+/* ---- reveal ---- */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .8s,transform .8s}
+.reveal.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<header class="topbar">
+  <div class="container">
+    <a href="#" class="brand">
+      <span class="mark">KT</span>
+      <span>KompuTek</span>
+    </a>
+    <nav class="nav">
+      <a href="#layanan">Layanan</a>
+      <a href="#produk">Produk</a>
+      <a href="#proses">Proses</a>
+      <a href="#paket">Paket</a>
+      <a href="#kontak">Kontak</a>
+    </nav>
+    <a href="https://wa.me/6287899969488" target="_blank" rel="noopener" class="nav-cta">WhatsApp</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <video autoplay muted loop playsinline preload="auto" poster="assets/img/workshop.jpg">
+    <source src="assets/vid/hero-3.mp4" type="video/mp4">
+  </video>
+  <div class="scrim"></div>
+  <div class="grid"></div>
+  <div class="meta">
+    <span><span class="dot"></span>SISTEM ONLINE — BENGKEL BUKA 09:00–21:00</span>
+    <span class="mono">EST. 2014 / BANDUNG</span>
+  </div>
+  <div class="container hero-content">
+    <h1 class="display">Komputer<br><span class="line2">Yang Tidak<br>Berhenti.</span></h1>
+    <p class="sub">Toko komputer dan service hardware/software di Bandung. Dari rakit PC gaming sampai pemulihan data yang orang lain bilang sudah hilang — kami selesaikan, dengan garansi tertulis.</p>
+    <div class="actions">
+      <a href="https://wa.me/6287899969488?text=Halo%20KompuTek%2C%20saya%20ingin%20konsultasi" target="_blank" rel="noopener" class="btn">Chat WhatsApp <span class="arrow">→</span></a>
+      <a href="#kontak" class="btn ghost">Form Kontak <span class="arrow">→</span></a>
+    </div>
+    <div class="hero-foot">
+      <div class="stat"><div class="n">10+</div><div class="l">Tahun Beroperasi</div></div>
+      <div class="stat"><div class="n">12.4K</div><div class="l">Unit Diservis</div></div>
+      <div class="stat"><div class="n">98%</div><div class="l">Tingkat Berhasil</div></div>
+      <div class="stat"><div class="n">4.9★</div><div class="l">Rating Pelanggan</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="marquee-track">
+    <span>Rakit PC Gaming <span class="dot"></span> Service Laptop <span class="dot"></span> Pemulihan Data <span class="dot"></span> Upgrade Komponen <span class="dot"></span> Jaringan & Server <span class="dot"></span> Instalasi CCTV <span class="dot"></span> Garansi Tertulis <span class="dot"></span></span>
+    <span>Rakit PC Gaming <span class="dot"></span> Service Laptop <span class="dot"></span> Pemulihan Data <span class="dot"></span> Upgrade Komponen <span class="dot"></span> Jaringan & Server <span class="dot"></span> Instalasi CCTV <span class="dot"></span> Garansi Tertulis <span class="dot"></span></span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="layanan">
+  <div class="container">
+    <div class="eyebrow">01 / Layanan</div>
+    <h2 class="section-title display">Satu Atap,<br><span class="accent">Semua Masalah.</span></h2>
+    <p class="section-lead">Dari mesin mati total sampai laptop yang cuma lambat — kami diagnosa dulu, baru bicara harga. Tidak ada biaya jasa kalau tidak bisa diperbaiki.</p>
+    <div class="srv-grid">
+      <div class="srv reveal"><div class="num">SRV_01</div><h3>Service Hardware</h3><p>Diagnosa motherboard, ganti IC, reballing GPU, perbaikan port charging dan keyboard. Komponen original, garansi 3 bulan.</p><div class="tags"><span>Laptop</span><span>PC</span><span>MacBook</span></div><span class="arrow">↗</span></div>
+      <div class="srv reveal"><div class="num">SRV_02</div><h3>Service Software</h3><p>Install ulang OS, driver, optimasi, bersih virus dan ransomware. Backup data sebelum eksekusi.</p><div class="tags"><span>Windows</span><span>Linux</span><span>macOS</span></div><span class="arrow">↗</span></div>
+      <div class="srv reveal"><div class="num">SRV_03</div><h3>Pemulihan Data</h3><p>HDD/SSD rusak, partisi hilang, file terhapus. Laboratorium cleanroom kerjasama. Estimasi gratis.</p><div class="tags"><span>HDD</span><span>SSD</span><span>RAID</span></div><span class="arrow">↗</span></div>
+      <div class="srv reveal"><div class="num">SRV_04</div><h3>Rakit PC Custom</h3><p>Gaming, workstation, server. Pilih komponen sesuai budget, dirakit dan di-stress test di tempat.</p><div class="tags"><span>Gaming</span><span>Workstation</span><span>Server</span></div><span class="arrow">↗</span></div>
+      <div class="srv reveal"><div class="num">SRV_05</div><h3>Upgrade & Modifikasi</h3><p>Tambah RAM, ganti SSD NVMe, undervolt, custom cooling. Laptop lama jadi cepat lagi.</p><div class="tags"><span>RAM</span><span>NVMe</span><span>Cooling</span></div><span class="arrow">↗</span></div>
+      <div class="srv reveal"><div class="num">SRV_06</div><h3>Jaringan & Keamanan</h3><p>Pasang CCTV, jaringan kantor, MikroTik, server NAS. Survey lokasi gratis untuk area Bandung.</p><div class="tags"><span>CCTV</span><span>LAN/WAN</span><span>NAS</span></div><span class="arrow">↗</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- SHOWCASE -->
+<section class="showcase">
+  <div class="container head">
+    <div class="eyebrow">02 / Galeri</div>
+    <h2 class="section-title display">Di Dalam<br><span class="accent">Bengkel.</span></h2>
+  </div>
+  <div class="show-grid">
+    <div class="tile tall"><img src="assets/img/workshop.jpg" alt="Bengkel"><div class="cap">WORKSHOP / BANDUNG</div></div>
+    <div class="tile"><img src="assets/img/motherboard.jpg" alt="Motherboard"><div class="cap">REBALLING GPU</div></div>
+    <div class="tile"><img src="assets/img/gpu.jpg" alt="GPU"><div class="cap">CLEANING</div></div>
+    <div class="tile"><img src="assets/img/desk.jpg" alt="Meja servis"><div class="cap">DIAGNOSA</div></div>
+    <div class="tile"><img src="assets/img/laptop.jpg" alt="Laptop"><div class="cap">UPGRADE NVME</div></div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="proses" class="process">
+  <div class="container">
+    <div class="eyebrow">03 / Proses</div>
+    <h2 class="section-title display">Empat Langkah,<br><span class="accent">Tanpa Drama.</span></h2>
+    <div class="steps">
+      <div class="step"><div class="n">01</div><h4>Konsultasi & Diagnosa</h4><p>Ceritakan masalahnya. Kami cek di tempat, estimasi biaya dan waktu diberikan sebelum eksekusi.</p><div class="rule"></div></div>
+      <div class="step"><div class="n">02</div><h4>Persetujuan</h4><p>Tidak ada perbaikan tanpa izin. Jika biaya berubah di tengah jalan, kami hubungi dulu.</p><div class="rule"></div></div>
+      <div class="step"><div class="n">03</div><h4>Eksekusi</h4><p>Dikerjakan teknisi berpengalaman, komponen original, progress bisa dipantau via WhatsApp.</p><div class="rule"></div></div>
+      <div class="step"><div class="n">04</div><h4>Serah Terima & Garansi</h4><p>Unit diuji bersama, garansi tertulis diserahkan. Kembali bermasalah? Kami tangani ulang.</p><div class="rule"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section id="produk">
+  <div class="container">
+    <div class="eyebrow">04 / Produk</div>
+    <h2 class="section-title display">Stok Ready,<br><span class="accent">Harga Jujur.</span></h2>
+    <p class="section-lead">Semua produk bergaransi resmi distributor. Bisa cicilan 0% untuk pembelian di atas 3 juta.</p>
+    <div class="srv-grid">
+      <div class="srv reveal"><div class="num">PRD_01</div><h3>Laptop & PC</h3><p>ASUS, Lenovo, Acer, MSI. Dari entry level sampai workstation. Siap pakai atau rakit custom.</p><div class="tags"><span>ASUS</span><span>Lenovo</span><span>MSI</span></div><span class="arrow">↗</span></div>
+      <div class="srv reveal"><div class="num">PRD_02</div><h3>Komponen</h3><p>CPU, GPU, RAM, SSD NVMe, PSU, casing. Stok update harian, harga mengikuti pasar.</p><div class="tags"><span>Intel</span><span>AMD</span><span>NVIDIA</span></div><span class="arrow">↗</span></div>
+      <div class="srv reveal"><div class="num">PRD_03</div><h3>Monitor & Aksesoris</h3><p>Monitor gaming, mechanical keyboard, mouse, headset, webcam. Coba langsung di toko.</p><div class="tags"><span>240Hz</span><span>Mechanical</span><span>RGB</span></div><span class="arrow">↗</span></div>
+      <div class="srv reveal"><div class="num">PRD_04</div><h3>Printer & Scanner</h3><p>Inkjet, laser, all-in-one. Tersedia tinta original dan compatible grade A.</p><div class="tags"><span>Inkjet</span><span>Laser</span><span>Tinta</span></div><span class="arrow">↗</span></div>
+      <div class="srv reveal"><div class="num">PRD_05</div><h3>Storage & Backup</h3><p>HDD eksternal, SSD portable, flashdisk. Solusi backup untuk data penting Anda.</p><div class="tags"><span>HDD</span><span>SSD</span><span>Flashdisk</span></div><span class="arrow">↗</span></div>
+      <div class="srv reveal"><div class="num">PRD_06</div><h3>Jaringan</h3><p>Router, switch, access point, kabel LAN. Untuk rumah maupun kantor kecil.</p><div class="tags"><span>MikroTik</span><span>TP-Link</span><span>Ubiquiti</span></div><span class="arrow">↗</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PACKAGES -->
+<section id="paket" class="packages">
+  <div class="container">
+    <div class="eyebrow">05 / Paket Service</div>
+    <h2 class="section-title display">Pilih Yang<br><span class="accent">Cocok.</span></h2>
+    <div class="pkg-grid">
+      <div class="pkg">
+        <h3>Basic</h3>
+        <p class="section-lead" style="margin-bottom:0;font-size:14px">Untuk masalah ringan.</p>
+        <div class="price">Rp 150k <small>/unit</small></div>
+        <ul>
+          <li>Diagnosa gratis</li>
+          <li>Install ulang OS</li>
+          <li>Bersih virus</li>
+          <li>Garansi 1 bulan</li>
+        </ul>
+        <a href="#kontak" class="btn ghost">Pilih Basic</a>
+      </div>
+      <div class="pkg featured">
+        <span class="badge">Paling Laris</span>
+        <h3>Pro</h3>
+        <p class="section-lead" style="margin-bottom:0;font-size:14px">Untuk kerusakan hardware.</p>
+        <div class="price">Rp 450k <small>/unit</small></div>
+        <ul>
+          <li>Semua fitur Basic</li>
+          <li>Ganti komponen minor</li>
+          <li>Reballing / ganti IC</li>
+          <li>Garansi 3 bulan</li>
+          <li>Prioritas antrian</li>
+        </ul>
+        <a href="#kontak" class="btn">Pilih Pro</a>
+      </div>
+      <div class="pkg">
+        <h3>Enterprise</h3>
+        <p class="section-lead" style="margin-bottom:0;font-size:14px">Untuk kantor & institusi.</p>
+        <div class="price">Custom</div>
+        <ul>
+          <li>Kontrak maintenance bulanan</li>
+          <li>On-site support</li>
+          <li>Backup & monitoring</li>
+          <li>SLA 24 jam</li>
+        </ul>
+        <a href="#kontak" class="btn ghost">Hubungi Kami</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testi">
+  <div class="container">
+    <div class="eyebrow">06 / Testimoni</div>
+    <h2 class="section-title display">Dipercaya<br><span class="accent">Ratusan.</span></h2>
+    <div class="testi-grid">
+      <div class="testi-card"><div class="quote">Laptop mati total, toko lain bilang ganti motherboard. Di sini cuma ganti IC, hemat 2 juta. Garansi jelas.</div><div class="who"><div class="avatar">AR</div><div><div class="name">Andi R.</div><div class="role">Mahasiswa ITB</div></div></div></div>
+      <div class="testi-card"><div class="quote">Rakit PC gaming 15 juta, dirakit rapi, cable management bersih. Stress test 24 jam sebelum diserahkan.</div><div class="who"><div class="avatar">BS</div><div><div class="name">Budi S.</div><div class="role">Gamer</div></div></div></div>
+      <div class="testi-card"><div class="quote">Pemulihan data 2TB dari HDD rusak, 90% file kembali. Komunikasi jelas sejak awal.</div><div class="who"><div class="avatar">CW</div><div><div class="name">Citra W.</div><div class="role">Freelancer</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="kontak" class="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div>
+        <div class="eyebrow">07 / Kontak</div>
+        <h2 class="section-title display">Datang Atau<br><span class="accent">Chat Kami.</span></h2>
+        <p class="section-lead">Konsultasi gratis, estimasi sebelum eksekusi. Bawa unit Anda, kami cek di tempat.</p>
+        <div class="info">
+          <div class="info-block"><div class="label">Alamat</div><div class="val">Jl. Telekomunikasi No. 14, Bandung</div></div>
+          <div class="info-block"><div class="label">WhatsApp</div><div class="val"><a href="https://wa.me/6287899969488" target="_blank" rel="noopener" style="color:var(--fg)">+62 878-9996-9488</a></div></div>
+          <div class="info-block"><div class="label">Jam Operasional</div><div class="val">Senin–Sabtu, 09:00–21:00</div></div>
+          <div class="info-block"><div class="label">Email</div><div class="val">halo@komputek.id</div></div>
+        </div>
+      </div>
+      <form onsubmit="event.preventDefault();alert('Pesan terkirim. Kami akan hubungi via WhatsApp.');">
+        <div class="row">
+          <input type="text" placeholder="Nama" required>
+          <input type="tel" placeholder="No. WhatsApp" required>
+        </div>
+        <select required>
+          <option value="" disabled selected>Jenis layanan</option>
+          <option>Service Hardware</option>
+          <option>Service Software</option>
+          <option>Pemulihan Data</option>
+          <option>Rakit PC</option>
+          <option>Lainnya</option>
+        </select>
+        <textarea placeholder="Ceritakan masalahnya..." required></textarea>
+        <button type="submit" class="btn">Kirim Pesan <span class="arrow">→</span></button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="top">
+      <div>
+        <a href="#" class="brand" style="margin-bottom:16px"><span class="mark">KT</span><span>KompuTek</span></a>
+        <p style="color:var(--muted);font-size:14px;max-width:320px">Toko komputer dan service hardware/software di Bandung sejak 2014. Garansi tertulis, harga jujur.</p>
+      </div>
+      <div><h4>Layanan</h4><ul><li><a href="#layanan">Service Hardware</a></li><li><a href="#layanan">Pemulihan Data</a></li><li><a href="#layanan">Rakit PC</a></li><li><a href="#layanan">Jaringan</a></li></ul></div>
+      <div><h4>Produk</h4><ul><li><a href="#produk">Laptop & PC</a></li><li><a href="#produk">Komponen</a></li><li><a href="#produk">Monitor</a></li><li><a href="#produk">Printer</a></li></ul></div>
+      <div><h4>Info</h4><ul><li><a href="#">Tentang Kami</a></li><li><a href="#">Garansi</a></li><li><a href="#">Karir</a></li><li><a href="#kontak">Kontak</a></li></ul></div>
+    </div>
+    <div class="bottom">
+      <span>© 2026 KompuTek. All rights reserved.</span>
+      <span class="mono">BUILT IN BANDUNG</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+const io=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('in')})},{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
